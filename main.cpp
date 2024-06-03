@@ -6,55 +6,28 @@
 #include <array>
 #include <vector>
 #include "src/Engine.h"
+#include "src/MainMenu.h"
 
 //-----------------
 #undef main
 //-----------------
 
-// global variables
-
 #define WHITE            \
    {                     \
       255, 255, 255, 255 \
    }
-#define RED          \
-   {                 \
-      255, 0, 0, 255 \
-   }
-#define BLUE         \
-   {                 \
-      0, 0, 255, 255 \
-   }
-#define BLACK      \
-   {               \
-      0, 0, 0, 255 \
-   }
+
 
 bool quit = false;
 SDL_Event e;
 
-int mouseX;
-int mouseY;
-
 SDL_Texture *backgroundTexture = nullptr;
 SDL_Texture *buttonPlay = nullptr;
-
-// global functions
-
-void GetCurrentMousePosition(int &x, int &y)
-{
-   SDL_GetMouseState(&x, &y);
-}
-
-
-void RenderDefaultScreenColor()
-{
-   SDL_SetRenderDrawColor(Engine::GetInstance().GetRenderer(), 0, 0, 0, 255);
-   SDL_RenderClear(Engine::GetInstance().GetRenderer());
-}
+SDL_Texture *buttonQuit = nullptr;
 
 int main(int argc, char **argv)
 {
+   MainMenu* mainMenu = nullptr;
    if (!Engine::GetInstance().Init())
    {
       std::cerr << "something is wrong in initializing stuff in Init() function !\n";
@@ -62,8 +35,10 @@ int main(int argc, char **argv)
    else
    {
 
-      backgroundTexture = TextureManager::GetInstance().LoadTexture(Engine::GetInstance().GetRenderer(), "assets/bgmenu.png");
-      buttonPlay = TextureManager::GetInstance().LoadTexture(Engine::GetInstance().GetRenderer(), "assets/button.png");
+      //backgroundTexture = TextureManager::GetInstance().LoadTexture(Engine::GetInstance().GetRenderer(), "assets/bgmenu.png");
+      //buttonPlay = TextureManager::GetInstance().LoadTexture(Engine::GetInstance().GetRenderer(), "assets/button.png");
+      //buttonQuit = TextureManager::GetInstance().LoadTexture(Engine::GetInstance().GetRenderer(), "assets/button.png");
+      mainMenu = new MainMenu();
       while (!quit)
       {
          while (SDL_PollEvent(&e) != 0)
@@ -72,17 +47,21 @@ int main(int argc, char **argv)
             {
                quit = true;
             }
-            TextureManager::GetInstance().ShowTexture(Engine::GetInstance().GetRenderer(), backgroundTexture, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-            TextureManager::GetInstance().ShowTexture(Engine::GetInstance().GetRenderer(), buttonPlay, 200, 200, 120, 40);
+            //TextureManager::GetInstance().ShowTexture(Engine::GetInstance().GetRenderer(), backgroundTexture, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+            //TextureManager::GetInstance().ShowTexture(Engine::GetInstance().GetRenderer(), buttonPlay, 200, 200, 120, 40);
+            //TextureManager::GetInstance().ShowTexture(Engine::GetInstance().GetRenderer(), buttonQuit, 200, 250, 120, 40);
+            mainMenu->Update();
          }
 
          // update Render
-         SDL_RenderPresent(Engine::GetInstance().GetRenderer());
+         Engine::GetInstance().Render();
 
          // Simulate slower frame rate
          // SDL_Delay(100); //Add 100ms delay per frame
       }
    }
    Engine::GetInstance().Close();
+   delete mainMenu;
+   mainMenu = nullptr;
    return 0;
 }

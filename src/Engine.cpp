@@ -43,6 +43,7 @@ bool Engine::Init()
     Mix_AllocateChannels(16);
 
     Engine &instance = Engine::GetInstance();
+    instance.GetInstance().m_GameState = EGS_MainMenu;
 
     instance.m_Window = SDL_CreateWindow("Unknown!", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     if (instance.m_Window == nullptr)
@@ -70,16 +71,37 @@ bool Engine::Init()
 
 void Engine::Close()
 {
-    Engine& instance = Engine::GetInstance();
+    Engine &instance = Engine::GetInstance();
     SDL_DestroyRenderer(instance.m_Renderer);
     SDL_DestroyWindow(instance.m_Window);
     TTF_CloseFont(instance.m_GameplayFont);
 
     instance.m_Renderer = nullptr;
     instance.m_Window = nullptr;
-    instance.m_GameplayFont = nullptr; 
+    instance.m_GameplayFont = nullptr;
 
     SDL_Quit();
     TTF_Quit();
     IMG_Quit();
+}
+
+void Engine::Update()
+{
+
+}
+
+void Engine::Render()
+{
+    SDL_RenderPresent(m_Renderer);
+}
+
+void Engine::GetCurrentMousePosition(int &x, int &y)
+{
+    SDL_GetMouseState(&x, &y);
+}
+
+void Engine::RenderDefaultScreenColor()
+{
+    SDL_SetRenderDrawColor(Engine::GetInstance().GetRenderer(), 0, 0, 0, 255);
+    SDL_RenderClear(Engine::GetInstance().GetRenderer());
 }
