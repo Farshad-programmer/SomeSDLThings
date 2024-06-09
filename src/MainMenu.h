@@ -14,7 +14,9 @@ public:
 private:
     void CreateBackgroundMenu();
     
-    SDL_Texture *backgroundTexture = nullptr;
+    SDL_Texture* backgroundTexture = nullptr;
+    SDL_Texture* buttonPlayTexture = nullptr;
+    SDL_Texture* buttonQuitTexture = nullptr;
 public:
 
 };

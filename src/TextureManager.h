@@ -18,10 +18,16 @@ public:
 
 
     SDL_Texture* LoadTexture(SDL_Renderer* renderer, std::string path, const int totalFrames, const int textureFrameWidth, const int textureFrameHeight, SDL_Rect textureClips[]);
+
     SDL_Texture* LoadTexture(SDL_Renderer* renderer, std::string path);
+
     void ShowTexture(SDL_Renderer* renderer, SDL_Texture* texture, int& currentFrame, SDL_Rect* clips,int frameWidth, int frameHeight, const int totalFrames);
+
     void ShowTexture(SDL_Renderer* renderer, SDL_Texture* texture, int& currentFrame,int frameWidth, int frameHeight, const int totalFrames);
+
     void ShowTexture(SDL_Renderer* renderer, SDL_Texture* texture,int x, int y, int frameWidth, int frameHeight);
+
+    void RenderText(SDL_Renderer *renderer, const char* text, int posX, int posY, SDL_Color textColor = {0, 0, 0});
 private:
     TextureManager(){}
     ~TextureManager() {}
