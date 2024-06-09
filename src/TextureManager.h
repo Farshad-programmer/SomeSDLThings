@@ -27,7 +27,7 @@ public:
 
     void ShowTexture(SDL_Renderer* renderer, SDL_Texture* texture,int x, int y, int frameWidth, int frameHeight);
 
-    void RenderText(SDL_Renderer *renderer, const char* text, int posX, int posY, SDL_Color textColor = {0, 0, 0});
+    void RenderText(SDL_Renderer *renderer, const char* text, int posX, int posY,int fontSize = 0 , SDL_Color textColor = {0, 0, 0});
 private:
     TextureManager(){}
     ~TextureManager() {}

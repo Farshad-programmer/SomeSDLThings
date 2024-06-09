@@ -59,7 +59,8 @@ bool Engine::Init()
         success = false;
     }
 
-    instance.m_GameplayFont = TTF_OpenFont("assets/fonts/lazy.ttf", 28);
+    int fontSize = int(instance.m_FontSize);
+    instance.m_GameplayFont = TTF_OpenFont("assets/fonts/lazy.ttf", fontSize);
     if (instance.m_GameplayFont == nullptr)
     {
         std::cerr << "Failed to load gameplayfont! TTF Error: " << TTF_GetError() << std::endl;
@@ -104,4 +105,10 @@ void Engine::RenderDefaultScreenColor()
 {
     SDL_SetRenderDrawColor(Engine::GetInstance().GetRenderer(), 0, 0, 0, 255);
     SDL_RenderClear(Engine::GetInstance().GetRenderer());
+}
+
+void Engine::SetFontSize(int newFontSize)
+{
+    Engine &instance = Engine::GetInstance();
+    instance.m_GameplayFont = TTF_OpenFont("assets/fonts/lazy.ttf", newFontSize);
 }

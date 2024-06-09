@@ -29,7 +29,8 @@ void MainMenu::Update()
     TextureManager::GetInstance().ShowTexture(renderer, backgroundTexture, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     TextureManager::GetInstance().ShowTexture(renderer, buttonPlayTexture, 200, 200, 120, 40);
     TextureManager::GetInstance().ShowTexture(renderer, buttonQuitTexture, 200, 250, 120, 40);
-    TextureManager::GetInstance().RenderText(renderer, " Play", 250, 220, {255, 0, 0});
+    TextureManager::GetInstance().RenderText(renderer, "GAME NAME", SCREEN_WIDTH / 2, 100, 130, {255, 0, 0});
+    TextureManager::GetInstance().RenderText(renderer, " Play", 250, 220);
     TextureManager::GetInstance().RenderText(renderer, "Quit", 250, 270);
 }
 

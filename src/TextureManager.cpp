@@ -89,8 +89,19 @@ void TextureManager::ShowTexture(SDL_Renderer *renderer, SDL_Texture *texture, i
    SDL_RenderCopy(renderer, texture, nullptr, &renderQuad);
 }
 
-void TextureManager::RenderText(SDL_Renderer *renderer, const char *text, int posX, int posY, SDL_Color textColor)
+void TextureManager::RenderText(SDL_Renderer *renderer, const char *text, int posX, int posY,int fontSize, SDL_Color textColor)
 {
+   if(fontSize == 0)
+   {
+      Engine::GetInstance().SetFontSize(Engine::GetInstance().GetFontSize());
+      
+   }else
+   {
+      Engine::GetInstance().SetFontSize(fontSize);
+   }
+   
+   
+   
    SDL_Texture *newTextTexture = nullptr;
    SDL_Surface *newTextSurface = nullptr;
    newTextSurface = TTF_RenderText_Solid(Engine::GetInstance().GetGameplayFont(), text, textColor);

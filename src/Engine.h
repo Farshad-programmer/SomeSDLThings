@@ -33,6 +33,8 @@ public:
     void GetCurrentMousePosition(int &x, int &y);
     void RenderDefaultScreenColor();
 
+    void SetFontSize(int newFontSize);
+
 private:
     Engine(){}
     ~Engine(){}
@@ -45,11 +47,12 @@ private:
     SDL_Window* m_Window = nullptr;
     TTF_Font* m_GameplayFont = nullptr;
     EGameState m_GameState;
+    int m_FontSize = 28;
 protected:
 
 public:
     inline SDL_Renderer* GetRenderer() const {return m_Renderer;}
     inline SDL_Window* GetWindow() const {return m_Window;}
     inline TTF_Font* GetGameplayFont() const {return m_GameplayFont;}
-
+    inline int GetFontSize() const {return m_FontSize;}
 };
