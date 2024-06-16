@@ -50,7 +50,7 @@ int main(int argc, char **argv)
             //TextureManager::GetInstance().ShowTexture(Engine::GetInstance().GetRenderer(), backgroundTexture, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
             //TextureManager::GetInstance().ShowTexture(Engine::GetInstance().GetRenderer(), buttonPlay, 200, 200, 120, 40);
             //TextureManager::GetInstance().ShowTexture(Engine::GetInstance().GetRenderer(), buttonQuit, 200, 250, 120, 40);
-            mainMenu->Update();
+            mainMenu->Update(e);
          }
 
          // update Render

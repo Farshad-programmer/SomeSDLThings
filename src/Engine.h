@@ -35,6 +35,8 @@ public:
 
     void SetFontSize(int newFontSize);
 
+    
+
 private:
     Engine(){}
     ~Engine(){}
